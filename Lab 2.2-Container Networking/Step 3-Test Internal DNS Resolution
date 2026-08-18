@@ -1,0 +1,1 @@
+docker run -it --rm --network enterprise_net alpine ping -c 3 secure_web
