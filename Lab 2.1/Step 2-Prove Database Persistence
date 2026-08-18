@@ -1,0 +1,9 @@
+docker run -d --name primary_db -v db_data:/data redis:alpine
+
+docker exec -it primary_db redis-cli set Status "Secure"
+
+docker rm -f primary_db
+
+docker run -d --name recovery_db -v db_data:/data redis:alpine
+
+docker exec -it recovery_db redis-cli get Status

@@ -1,0 +1,7 @@
+mkdir live-web
+
+cd live-web
+
+#docker run -d -p 8080:80 --name live_server -v "$(pwd):/usr/share/nginx/html" nginx:alpine
+
+docker run -d -p 8080:80 --name live_server -v "${PWD}:/usr/share/nginx/html" nginx:alpine
