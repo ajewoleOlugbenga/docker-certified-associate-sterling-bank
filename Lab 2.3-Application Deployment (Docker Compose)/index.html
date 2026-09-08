@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sterling Bank | Docker Certified Associate — Capstone Lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #E2231A;
+    --red-dark: #B81B14;
+    --ink: #333333;
+    --grey: #555555;
+    --grey-light: #F2F2F2;
+    --grey-mid: #E8E8E8;
+    --line: #DADADA;
+  }
+  * { box-sizing: border-box; }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: var(--ink);
+    background: #fff;
+  }
+
+  h1, h2, .display {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: var(--grey);
+    margin: 0;
+  }
+
+  /* ===== Header ===== */
+  .site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 48px;
+    border-bottom: 1px solid var(--line);
+  }
+  .logo img { height: 34px; display: block; }
+  .header-icons { display: flex; align-items: center; gap: 26px; color: var(--ink); }
+  .header-icons svg { display: block; }
+
+  /* ===== Hero ===== */
+  .hero {
+    position: relative;
+    background: linear-gradient(135deg, #fafafa 0%, var(--grey-light) 60%, var(--grey-mid) 100%);
+    padding: 64px 48px 72px;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 40px;
+    align-items: center;
+    overflow: hidden;
+  }
+  .hero-copy .eyebrow {
+    color: var(--red);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 14px;
+  }
+  .hero-copy h1 { font-size: clamp(32px, 4.2vw, 52px); line-height: 1.12; }
+  .hero-copy p {
+    color: var(--grey);
+    font-size: 15px;
+    line-height: 1.7;
+    max-width: 460px;
+    margin-top: 20px;
+  }
+  .hero-copy p b { color: var(--ink); }
+
+  .hero-art { position: relative; height: 340px; }
+  .art-frame {
+    position: absolute;
+    top: 0; right: 0;
+    width: 78%; height: 100%;
+    background: linear-gradient(160deg, #1c1c1c 0%, #333 55%, #1c1c1c 100%);
+    clip-path: polygon(14% 0, 100% 0, 100% 100%, 0% 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .art-bar {
+    position: absolute;
+    top: 0; right: 78%;
+    width: 14px; height: 100%;
+    background: var(--red);
+    clip-path: polygon(30% 0, 100% 0, 70% 100%, 0% 100%);
+  }
+  .art-icon { width: 44%; opacity: 0.95; }
+
+  /* ===== Feature sections ===== */
+  .feature {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 40px;
+    align-items: center;
+    padding: 60px 48px;
+  }
+  .feature.reverse { grid-template-columns: 1.1fr 0.9fr; }
+  .feature.reverse .feature-art { order: 1; }
+  .feature.reverse .feature-copy { order: 2; }
+  .feature.alt { background: var(--grey-light); }
+
+  .feature-art { position: relative; height: 260px; }
+  .feature.reverse .art-frame { right: auto; left: 0; clip-path: polygon(0 0, 86% 0, 100% 100%, 0% 100%); }
+  .feature.reverse .art-bar { right: auto; left: 78%; clip-path: polygon(0 0, 70% 0, 100% 100%, 30% 100%); }
+
+  .feature-copy h2 { font-size: clamp(24px, 3vw, 34px); line-height: 1.18; margin-bottom: 16px; }
+  .feature-copy p { color: var(--grey); font-size: 14.5px; line-height: 1.75; max-width: 440px; }
+  .feature-copy .tag-row { display: flex; gap: 10px; margin-top: 22px; flex-wrap: wrap; }
+  .tag {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--red);
+    background: #fff;
+    border: 1px solid var(--red);
+    border-radius: 20px;
+    padding: 6px 14px;
+  }
+  .feature.alt .tag { background: var(--grey-light); }
+
+  .btn {
+    display: inline-block;
+    margin-top: 24px;
+    background: var(--red);
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 13px 28px;
+    border-radius: 24px;
+    text-decoration: none;
+  }
+
+  /* ===== Status strip ===== */
+  .status-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .status-cell {
+    padding: 26px 48px;
+    border-left: 1px solid var(--line);
+  }
+  .status-cell:first-child { border-left: none; }
+  .status-cell .k { font-size: 12px; color: var(--grey); margin-bottom: 6px; }
+  .status-cell .v { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 16px; color: var(--ink); }
+  .status-cell .v .pulse-dot {
+    display: inline-block; width: 8px; height: 8px; border-radius: 50%;
+    background: #2FAE66; margin-right: 8px; animation: pulse 2.2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+  /* ===== Footer ===== */
+  footer { background: #6b6b6b; color: #f0f0f0; padding: 52px 48px 0; }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 32px;
+    padding-bottom: 40px;
+  }
+  .footer-col h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: #fff;
+    margin: 0 0 16px;
+  }
+  .footer-col ul { list-style: none; margin: 0; padding: 0; }
+  .footer-col li { margin-bottom: 10px; }
+  .footer-col a { color: #d8d8d8; text-decoration: none; font-size: 13.5px; }
+  .footer-col a:hover { color: #fff; }
+  .footer-social { display: flex; gap: 14px; margin-top: 18px; }
+  .footer-social a {
+    width: 30px; height: 30px; border-radius: 50%; border: 1px solid #a0a0a0;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    border-top: 1px solid #7c7c7c;
+    padding: 18px 0;
+    font-size: 12.5px;
+    color: #d8d8d8;
+  }
+  .footer-bottom-links a { color: #d8d8d8; text-decoration: none; margin-right: 18px; }
+  .footer-bottom-links a:hover { color: #fff; }
+
+  @media (max-width: 860px) {
+    .hero, .feature, .feature.reverse { grid-template-columns: 1fr; }
+    .feature.reverse .feature-art, .feature.reverse .feature-copy { order: unset; }
+    .hero-art, .feature-art { height: 220px; }
+    .status-strip { grid-template-columns: 1fr; }
+    .status-cell { border-left: none; border-top: 1px solid var(--line); }
+    .status-cell:first-child { border-top: none; }
+    .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    .site-header { padding: 16px 20px; }
+    .hero, .feature { padding: 44px 20px; }
+    footer { padding: 40px 20px 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="logo">
+    <img src="https://sterling.ng/wp-content/uploads/2023/04/SterlingLogo.png" alt="Sterling Bank">
+  </div>
+  <div class="header-icons">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="#333" stroke-width="2"/><path d="M21 21l-4.35-4.35" stroke="#333" stroke-width="2" stroke-linecap="round"/></svg>
+    <svg width="22" height="16" viewBox="0 0 24 18" fill="none"><rect width="24" height="2.4" fill="#333"/><rect y="7.8" width="24" height="2.4" fill="#333"/><rect y="15.6" width="24" height="2.4" fill="#333"/></svg>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow">We mean it when we say</div>
+    <h1>"Two services.<br>One network.<br>Zero manual wiring."</h1>
+    <p>Welcome to <b>Sterling Bank Technology Academy</b> — Docker Certified Associate Prep, <b>Lab 2.3</b>. This page is served live by the <b>web</b> container, proving the capstone stack deployed correctly from a single Compose blueprint.</p>
+  </div>
+  <div class="hero-art">
+    <div class="art-bar"></div>
+    <div class="art-frame">
+      <svg class="art-icon" viewBox="0 0 100 100" fill="none">
+        <rect x="18" y="14" width="64" height="20" rx="4" fill="#E2231A"/>
+        <circle cx="28" cy="24" r="3" fill="#fff"/>
+        <rect x="38" y="21" width="34" height="6" rx="2" fill="#ffffff88"/>
+        <rect x="18" y="40" width="64" height="20" rx="4" fill="#555"/>
+        <circle cx="28" cy="50" r="3" fill="#fff"/>
+        <rect x="38" y="47" width="34" height="6" rx="2" fill="#ffffff55"/>
+        <rect x="18" y="66" width="64" height="20" rx="4" fill="#E2231A" opacity="0.7"/>
+        <circle cx="28" cy="76" r="3" fill="#fff"/>
+        <rect x="38" y="73" width="34" height="6" rx="2" fill="#ffffff88"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<div class="status-strip">
+  <div class="status-cell">
+    <div class="k">web service</div>
+    <div class="v"><span class="pulse-dot"></span>nginx:alpine · running</div>
+  </div>
+  <div class="status-cell">
+    <div class="k">database service</div>
+    <div class="v"><span class="pulse-dot"></span>redis:alpine · running</div>
+  </div>
+  <div class="status-cell">
+    <div class="k">deployed via</div>
+    <div class="v">docker compose up -d</div>
+  </div>
+</div>
+
+<section class="feature">
+  <div class="feature-copy">
+    <h2>Web Tier<br>Delivered on Port 8080</h2>
+    <p>The public-facing edge of the stack. Nginx serves this page to anyone hitting <b>localhost:8080</b>, and starts only after the database service is scheduled — proof that <code>depends_on</code> is doing its job.</p>
+    <div class="tag-row">
+      <span class="tag">nginx:alpine</span>
+      <span class="tag">port 8080:80</span>
+      <span class="tag">depends_on: database</span>
+    </div>
+  </div>
+  <div class="feature-art">
+    <div class="art-bar"></div>
+    <div class="art-frame">
+      <svg class="art-icon" viewBox="0 0 100 100" fill="none">
+        <rect x="12" y="20" width="76" height="52" rx="5" stroke="#fff" stroke-width="3" fill="none"/>
+        <line x1="12" y1="32" x2="88" y2="32" stroke="#fff" stroke-width="3"/>
+        <circle cx="20" cy="26" r="2" fill="#E2231A"/>
+        <circle cx="27" cy="26" r="2" fill="#fff"/>
+        <circle cx="34" cy="26" r="2" fill="#fff"/>
+        <rect x="24" y="42" width="52" height="6" rx="2" fill="#E2231A"/>
+        <rect x="24" y="54" width="34" height="6" rx="2" fill="#ffffff88"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="feature reverse alt">
+  <div class="feature-art">
+    <div class="art-bar"></div>
+    <div class="art-frame">
+      <svg class="art-icon" viewBox="0 0 100 100" fill="none">
+        <ellipse cx="50" cy="24" rx="30" ry="10" fill="#E2231A"/>
+        <path d="M20 24v20c0 5.5 13.4 10 30 10s30-4.5 30-10V24" stroke="#fff" stroke-width="3" fill="none"/>
+        <path d="M20 44v20c0 5.5 13.4 10 30 10s30-4.5 30-10V44" stroke="#fff" stroke-width="3" fill="none"/>
+      </svg>
+    </div>
+  </div>
+  <div class="feature-copy">
+    <h2>Database Tier<br>Backed by a Named Volume</h2>
+    <p>Redis holds state for the stack, writing to the <b>dashboard_data</b> volume. Because the volume lives independently of the container, data set here survives a container restart — and even a full <code>docker compose down</code>, unless the <code>-v</code> flag is used.</p>
+    <div class="tag-row">
+      <span class="tag">redis:alpine</span>
+      <span class="tag">volume: dashboard_data</span>
+      <span class="tag">internal only</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h3>ARCHITECTURE</h3>
+      <ul>
+        <li><a href="#">Web Tier</a></li>
+        <li><a href="#">Database Tier</a></li>
+        <li><a href="#">Volumes</a></li>
+        <li><a href="#">Networks</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>DEPLOYMENT</h3>
+      <ul>
+        <li><a href="#">Compose Up</a></li>
+        <li><a href="#">Compose Down</a></li>
+        <li><a href="#">Scaling Services</a></li>
+        <li><a href="#">Rollback</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>TRAINING</h3>
+      <ul>
+        <li><a href="#">Curriculum</a></li>
+        <li><a href="#">Lab Index</a></li>
+        <li><a href="#">Certification Path</a></li>
+        <li><a href="#">Instructor Notes</a></li>
+      </ul>
+      <div class="footer-social">
+        <a href="#" aria-label="X"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M18 2h3l-7.5 8.6L22 22h-6.9l-5.4-6.6L3.6 22H.6l8-9.2L2 2h7l4.9 6z"/></svg></a>
+        <a href="#" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5.001A2.5 2.5 0 014.98 3.5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.3-.02-2.96-1.8-2.96-1.8 0-2.08 1.4-2.08 2.86V21H9z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h3>ABOUT</h3>
+      <ul>
+        <li><a href="#">Technology Academy</a></li>
+        <li><a href="#">2026 Cohort</a></li>
+        <li><a href="#">Careers in Tech</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h3>HELP &amp; SUPPORT</h3>
+      <ul>
+        <li><a href="#">Lab Guide</a></li>
+        <li><a href="#">Troubleshooting</a></li>
+        <li><a href="#">Cohort Slack Channel</a></li>
+        <li><a href="#">Office Hours</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>Copyright © 2026 Sterling Bank Technology Academy.</div>
+    <div class="footer-bottom-links">
+      <a href="#">Lab Guide</a>
+      <a href="#">Docker Certified Associate</a>
+      <a href="#">Capstone Series</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
