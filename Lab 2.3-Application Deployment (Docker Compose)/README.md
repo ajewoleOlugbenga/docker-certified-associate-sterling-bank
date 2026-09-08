@@ -33,6 +33,8 @@ services:
     image: nginx:alpine
     ports:
       - "8080:80"
+    volumes:
+      - ./index.html:/usr/share/nginx/html/index.html
     depends_on:
       - database
 
